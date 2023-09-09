@@ -52,7 +52,7 @@ function namehandler(e) {
   };
 
   // Convert the data into the required format for a pie chart
-  const pieChartData = data.map((item) => ({
+  const graphdata = data.map((item) => ({
     // name: Object.keys(item)[0],
     // value: parseFloat(Object.values(item)[item.length]),
     name: item[Name],
@@ -61,14 +61,14 @@ function namehandler(e) {
 
 
   useEffect(() => {
-    // Update the number value based on pieChartData.length
-    if (pieChartData.length > 50) {
+    // Update the number value based on graphdata.length
+    if (graphdata.length > 50) {
       setNumber(800);
       setinterval(2);
-    } else if (pieChartData.length < 50) {
+    } else if (graphdata.length < 50) {
       setNumber(250);
       setinterval(0)
-    } else if(pieChartData.length > 100){
+    } else if(graphdata.length > 100){
       setNumber(1200);
       setinterval(5);
     }
@@ -76,11 +76,11 @@ function namehandler(e) {
       // Define a default value here if needed
       setNumber(400);
     }
-  }, [pieChartData]); // Listen for changes in pieChartData
+  }, [graphdata]); // Listen for changes in graphdata
 
-  const width_length = number/pieChartData.length;
-  console.log(pieChartData);
-  console.log(pieChartData.length);
+  const width_length = number/graphdata.length;
+  console.log(graphdata);
+  console.log(graphdata.length);
   console.log(width_length);
   console.log("Name",Name,"Value",Value);
   
@@ -88,7 +88,7 @@ function namehandler(e) {
     <main>
 
       <div className="export-component">
-        <h1>Excel File to Chart</h1>
+        <h1>Excel File to Graph</h1>
         <label>
           Upload Excel File
           <input
@@ -150,7 +150,7 @@ function namehandler(e) {
           <BarChart
          width={width_length*100}
         height={width_length*60}
-        data={pieChartData}
+        data={graphdata}
         margin={{
           top: 5,
           right: 30,
