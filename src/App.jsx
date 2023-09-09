@@ -11,6 +11,7 @@ export default function App() {
   const [Name , setname] = useState(''); 
   const [number, setNumber] = useState(50);
   const[loading , setloading] = useState(false);
+  const [interval , setinterval] = useState(0);
 
   const handleFileUpload = (e) => {
     setloading(true);
@@ -61,11 +62,17 @@ function namehandler(e) {
 
   useEffect(() => {
     // Update the number value based on pieChartData.length
-    if (pieChartData.length > 70) {
-      setNumber(600);
+    if (pieChartData.length > 50) {
+      setNumber(800);
+      setinterval(2);
     } else if (pieChartData.length < 50) {
       setNumber(250);
-    } else {
+      setinterval(0)
+    } else if(pieChartData.length > 100){
+      setNumber(1200);
+      setinterval(5);
+    }
+    else {
       // Define a default value here if needed
       setNumber(400);
     }
@@ -154,7 +161,7 @@ function namehandler(e) {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name"
           angle={-45}
-          interval={0}
+          interval={interval}
           textAnchor="end" // or "middle" depending on your preference
             tick={{
               fill: 'white', // Set the fill color for the tick labels
