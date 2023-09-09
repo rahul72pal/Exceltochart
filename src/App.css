@@ -13,8 +13,7 @@ main {
   justify-content: center;
   align-items: center;
   background-color: rgb(50,50,50);
-  color: white;
-}
+  }
 
 .chart-container{
   padding: 20px;
@@ -102,7 +101,9 @@ input[type="text"] {
   padding: 20px;
 }
 
-
+h1, .decs, .Name, .value{
+  color: white;
+}
 
 
 
@@ -110,8 +111,8 @@ table {
   width: 100%;
   border-collapse: collapse;
   color: white;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 70px;
+  padding-right: 70px;
 }
 
 table, th, td {

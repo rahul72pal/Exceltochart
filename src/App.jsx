@@ -4,7 +4,6 @@ import * as XLSX from 'xlsx';
 import {PieChart , Pie,Tooltip, BarChart,XAxis,YAxis,Bar,Legend,CartesianGrid} from 'recharts';
 
 export default function App() {
-
   
   const [data, setData] = useState([]);
   const [showChart, setShowChart] = useState(false);
@@ -34,14 +33,18 @@ export default function App() {
 
   console.log(data);
 
-  function valuehandler(e){
-    e.preventDefault();
-    setvalue(e.target.value);
-  }
-  function namehandler(e){
-    e.preventDefault();
-    setname(e.target.value);
-  }
+
+
+ function valuehandler(e) {
+  e.preventDefault();
+  setvalue(e.target.value); // Update the 'Value' state with user input
+}
+
+function namehandler(e) {
+  e.preventDefault();
+  setname(e.target.value); // Update the 'Name' state with user input
+}
+
 
   const toggleChart = () => {
     setShowChart(!showChart);
@@ -51,9 +54,10 @@ export default function App() {
   const pieChartData = data.map((item) => ({
     // name: Object.keys(item)[0],
     // value: parseFloat(Object.values(item)[item.length]),
-    name: item[Name].split(' ')[0],
+    name: item[Name],
   value: parseFloat(item[Value]),
   }));
+
 
   useEffect(() => {
     // Update the number value based on pieChartData.length
@@ -134,11 +138,10 @@ export default function App() {
       <button className='toggle' onClick={toggleChart}>Show Chart</button>
 
       {
-        showChart&&
-        <div className="chart-container">
+        showChart &&
+         <div className="chart-container">
           <BarChart
-            
-        width={width_length*100}
+         width={width_length*100}
         height={width_length*60}
         data={pieChartData}
         margin={{
@@ -149,25 +152,19 @@ export default function App() {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis className="barchart" dataKey="name"
-            angle={-90}
-            interval={0}
-            textAnchor="end" // or "middle" depending on your preference
+        <XAxis dataKey="name"
+          angle={-45}
+          interval={0}
+          textAnchor="end" // or "middle" depending on your preference
             tick={{
               fill: 'white', // Set the fill color for the tick labels
-              fontSize: 16, // Adjust font size as needed
+              fontSize: 10, // Adjust font size as needed
             }}
           />
         <YAxis />
         <Tooltip />
         <Legend />
-        {/* <Bar className='barchart' dataKey="value" fill="#092aaf" /> */}
-            <Bar
-              dataKey="value"
-              fill="#007bff"
-              // Apply inline CSS styles to the Bar component
-              shape={<rect className="barchart" />}
-            />
+        <Bar dataKey="value" fill="#007bff" />
       </BarChart>
         </div>
       }
